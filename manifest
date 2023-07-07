@@ -21,5 +21,5 @@ requires: python >= 3.4 ; Python 3 used for generator scripts
 requires: godot == $    ; Godot is required to run the tests
 
 builds: latest ; Requires recent compiler versions
-latest-builds-config: ?sys:python3 ; Python >= 3.4 required for code generation
+latest-build-config: ?sys:python3 ; Python >= 3.4 required for code generation
 
