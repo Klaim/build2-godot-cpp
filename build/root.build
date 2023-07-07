@@ -23,8 +23,8 @@ using c
 #
 test.target = $cxx.target
 
-python_exe = [string] "python3"
+python_exe = [string] "python"
 
-if($cxx.target.class == 'windows')
-    python_exe = "python"
+if($find($build.host.system, 'ubuntu'))
+    python_exe = "python3"
 
