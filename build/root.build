@@ -8,7 +8,8 @@
 config [string] config.godot_cpp.python_exe ?= [null]
 
 is_linux = ($build.host.class == 'linux')
-is_host_ubuntu = ( $is_linux && $regex.search($process.run(lsb_release -a), '.*Ubuntu.*') )
+has_lsb_release = ( $is_linux && $process.run(which lsb_release) != [null] )
+is_host_ubuntu = ( $has_lsb_release && $regex.search($process.run(lsb_release -a), '.*Ubuntu.*') )
 
 switch $is_host_ubuntu, $config.godot_cpp.python_exe
 {
