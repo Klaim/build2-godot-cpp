@@ -26,6 +26,7 @@ latest-build-config: ?sys:python ; Python >= 3.4 required for code generation
 ubuntu-build: latest: linux_ubuntu*-**
 ubuntu-build-config:
 \
-?sys:python3 ; Ubuntu's python 3.x package is named 'python3'
-# config.godot_cpp.python_exe="python3" ; Ubuntu's python 3.x executable name is 'python3'
+?sys:python3
+# config.godot_cpp.python_exe="python3"
+; Ubuntu's python 3.x package and executable are named 'python3'
 \
