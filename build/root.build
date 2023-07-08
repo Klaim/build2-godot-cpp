@@ -2,6 +2,37 @@
 #
 #cxx.internal.scope = current
 
+#### CONFIGURATION #######################################
+# Attempt to deduce the right name of the python executable
+
+config [string] config.godot_cpp.python_exe ?= [null]
+
+is_linux = ($build.host.class == 'linux')
+is_host_ubuntu = ( $is_linux && $regex.search($process.run(lsb_release -a), '.*Ubuntu.*') )
+
+switch $is_host_ubuntu, $config.godot_cpp.python_exe
+{
+    case true, [null]
+    {
+        # info "we are on ubuntu"
+        python_exe = "python3"
+    }
+
+    default
+    {
+        # info "not ubuntu"
+        python_exe = "python"
+    }
+}
+
+# info "python_exe = '$python_exe'"
+# info "config.godot_cpp.python_exe = '$config.godot_cpp.python_exe'"
+# info "is_host_ubuntu = $is_host_ubuntu"
+# info "build.host.class = '$build.host.class'"
+
+###########################################
+
+
 cxx.std = latest
 
 using cxx
@@ -22,9 +53,4 @@ using c
 # The test target for cross-testing (running tests under Wine, etc).
 #
 test.target = $cxx.target
-
-python_exe = [string] "python"
-
-if($find($build.host.system, 'ubuntu'))
-    python_exe = "python3"
 
