@@ -19,8 +19,8 @@ depends: * bpkg >= 0.16.0
 
 requires: godot == $    ; A compatible version of Godot is required to run the tests
 
-depends: python3
+depends: python3 ^3.4.0
 
 builds: latest ; Requires recent compiler versions.
 builds: -windows -macos ; Works but CI can't use system package manager for these platforms.
-latest-build-config: ?sys:python3 ; Python >= 3.4 required for code generation.
+latest-build-config: ?sys:python3/* ; Python >= 3.4 required for code generation.
